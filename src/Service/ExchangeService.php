@@ -13,7 +13,6 @@ class ExchangeService
         $this->entityManager = $entityManager;
     }
 
-
     public function insertJson(string $jsonContent, \DateTimeImmutable $createdAt)
     {
         $em = $this->entityManager;
