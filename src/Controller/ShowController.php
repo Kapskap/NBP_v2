@@ -7,14 +7,18 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Exchange;
 use App\Repository\ExchangeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class ShowController
+class ShowController extends AbstractController
 {
     #[Route('/show', name: 'app_show')]
-    public function showExchange(): Response
+    public function showExchange(EntityManagerInterface $entityManager, int $id=null): Response
     {
-        return new Response(
-            '<html><body>Kurs wymiany walut</body></html>'
-        );
+        $exchangeRepository = $entityManager->getRepository(Exchange::class);
+        $exchange = $exchangeRepository->findBy([], ['createdAt' => 'DESC'],['limit' => 1]);
+        dd($exchange);
+
+
+        return $this->render('show.html.twig', ['exchange' => $exchange]);
     }
 }
