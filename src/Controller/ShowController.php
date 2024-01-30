@@ -15,10 +15,13 @@ class ShowController extends AbstractController
     public function showExchange(EntityManagerInterface $entityManager, int $id=null): Response
     {
         $exchangeRepository = $entityManager->getRepository(Exchange::class);
-        $exchange = $exchangeRepository->findBy([], ['createdAt' => 'DESC'],['limit' => 1]);
-        dd($exchange);
+//        $exchange = $exchangeRepository->findBy([], ['createdAt' => 'DESC'],['limit' => 1]);
+        $exchange = $exchangeRepository->find(1);
+        $jsonContent = $exchange->getJson();
+        $date = $exchange->getCreatedAt();
+//        dd($jsonContent);
 
 
-        return $this->render('show.html.twig', ['exchange' => $exchange]);
+        return $this->render('show.html.twig', ['json' => $jsonContent, 'date' => $date]);
     }
 }

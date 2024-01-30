@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    | show
+{% endblock %}
+{% block body %}
+    <div class="content">
+        Znaleziono <b> {{ json|length }} </b> wpisów z dnia {{ date|date("m/d/Y") }}.<br><br>
+        Aby uzyskać bardziej szczegółowe informacje kliknij wybraną pozycję
+    </div>
+    {% for content in json %}
+        <a href="{{ path('app_show') }}">
+            {# <strong> {{ content.currency }} </strong><strong> {{ content.code }} </strong> {{ content.mid }} #}
+            {{ date|date("m/d/Y") }}
+        </a></div><br>
+    {% endfor %}
+
+
+{% endblock %}
