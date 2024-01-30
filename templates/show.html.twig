@@ -8,11 +8,14 @@
         Aby uzyskać bardziej szczegółowe informacje kliknij wybraną pozycję
     </div>
     {% for content in json %}
+    {% for x in content %}
+        {% for d in x %}
         <a href="{{ path('app_show') }}">
             {# <strong> {{ content.currency }} </strong><strong> {{ content.code }} </strong> {{ content.mid }} #}
-            {{ date|date("m/d/Y") }}
+            {{ d.currency }}   {{ d.code }} {{ d.mid }}
         </a></div><br>
     {% endfor %}
-
+    {% endfor %}
+    {% endfor %}
 
 {% endblock %}
