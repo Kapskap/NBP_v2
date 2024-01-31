@@ -4,18 +4,18 @@
 {% endblock %}
 {% block body %}
     <div class="content">
-        Znaleziono <b> {{ json|length }} </b> wpisów z dnia {{ date|date("m/d/Y") }}.<br><br>
-        Aby uzyskać bardziej szczegółowe informacje kliknij wybraną pozycję
+        Znaleziono <b> {{ rates|length }} </b> wpisy z dnia {{ effectiveDate|date("Y-m-d") }}.<br><br>
     </div>
-    {% for content in json %}
-    {% for x in content %}
-        {% for d in x %}
-        <a href="{{ path('app_show') }}">
-            {# <strong> {{ content.currency }} </strong><strong> {{ content.code }} </strong> {{ content.mid }} #}
-            {{ d.currency }}   {{ d.code }} {{ d.mid }}
-        </a></div><br>
+
+    <table>
+       <tr><td><b>Waluta</b></td><td><b>Kurs</b></td><td><b>Oznaczenie</b></td></tr>
+
+    {% for rate in rates %}
+        <tr>
+            <td> {{ rate.currency }}  </td><td> {{ rate.mid }} </td> <td>{{ rate.code }}</td>
+        </tr>
     {% endfor %}
-    {% endfor %}
-    {% endfor %}
+
+    </table>
 
 {% endblock %}
