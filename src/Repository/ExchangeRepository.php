@@ -21,6 +21,20 @@ class ExchangeRepository extends ServiceEntityRepository
         parent::__construct($registry, Exchange::class);
     }
 
+    public function findNew(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT *
+            FROM exchange e
+            ORDER BY e.created_at DESC
+            LIMIT 1'
+            ;
+
+        $resultSet = $conn->executeQuery($sql);
+        return $resultSet->fetchAllAssociative();
+    }
+
 //    /**
 //     * @return Exchange[] Returns an array of Exchange objects
 //     */
