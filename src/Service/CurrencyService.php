@@ -17,15 +17,15 @@ class CurrencyService
     {
         $em = $this->entityManager;
 
-        $query = "INSERT INTO currency (currency, code, mid, input_at)
-                    VALUES(:currency, :code, :mid, :input_at)";
+        $query = "INSERT INTO currency (currency, code, mid, import_at)
+                    VALUES(:currency, :code, :mid, :import_at)";
 
         $stmt = $em->getConnection()->prepare($query);
         $r = $stmt->execute(array(
             'currency' => $currency,
             'code' => $code,
             'mid' => $mid,
-            'input_at' => $effectiveDate,
+            'import_at' => $effectiveDate,
         ));
     }
 }

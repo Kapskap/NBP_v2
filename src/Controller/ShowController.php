@@ -21,7 +21,7 @@ class ShowController extends AbstractController
     public function showExchange(EntityManagerInterface $entityManager, int $id=null): Response
     {
         $exchangeRepository = $entityManager->getRepository(Exchange::class);
-        $exchange = $exchangeRepository->find(4);
+        $exchange = $exchangeRepository->find(1);
         $jsonContent = $exchange->getJson();
 
 //        $exchange = $exchangeRepository->findBy([], ['createdAt' => 'DESC'],['limit' => 1]);

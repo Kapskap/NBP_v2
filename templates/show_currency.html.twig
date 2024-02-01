@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    | show
+{% endblock %}
+{% block body %}
+    <div class="content">
+        Znaleziono <b> {{ currencies|length }} </b> kursy walut.
+        {# currencies|last.importat|date("Y-m-d") #}
+        <br><br>
+    </div>
+
+    <table>
+        <tr><td><b>Waluta</b></td><td><b>Kurs</b></td><td><b>Oznaczenie</b></td></tr>
+
+        {% for curr in currencies %}
+            <tr>
+                <td> {{ curr.currency }}  </td><td> {{ curr.mid }} </td> <td>{{ curr.code }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}

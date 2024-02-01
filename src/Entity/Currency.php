@@ -23,11 +23,8 @@ class Currency
     #[ORM\Column]
     private ?float $mid = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $importAt = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $inputAt = null;
+    private ?\DateTimeInterface $importAt = null;
 
     public function getId(): ?int
     {
@@ -82,15 +79,4 @@ class Currency
         return $this;
     }
 
-    public function getInputAt(): ?\DateTimeInterface
-    {
-        return $this->inputAt;
-    }
-
-    public function setInputAt(\DateTimeInterface $inputAt): static
-    {
-        $this->inputAt = $inputAt;
-
-        return $this;
-    }
 }
