@@ -10,7 +10,7 @@
     <table>
        <tr><td><b>Waluta</b></td><td><b>Kurs</b></td><td><b>Oznaczenie</b></td></tr>
 
-    {% for rate in rates %}
+    {% for rate in rates.rates %}
         <tr>
             <td> {{ rate.currency }}  </td><td> {{ rate.mid }} </td> <td>{{ rate.code }}</td>
         </tr>

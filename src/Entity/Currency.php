@@ -67,12 +67,12 @@ class Currency
         return $this;
     }
 
-    public function getImportAt(): ?\DateTimeImmutable
+    public function getImportAt(): ?\DateTimeInterface
     {
         return $this->importAt;
     }
 
-    public function setImportAt(\DateTimeImmutable $importAt): static
+    public function setImportAt(\DateTimeInterface $importAt): static
     {
         $this->importAt = $importAt;
 

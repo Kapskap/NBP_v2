@@ -15,7 +15,7 @@ class ShowCurrencyController extends AbstractController
     {
         $currencyRepository = $entityManager->getRepository(Currency::class);
         $currency = $currencyRepository->findBy([], ['importAt' => 'DESC']);
-
+//dd($currency);
         return $this->render('show_currency.html.twig', [
             'currencies' => $currency,
         ]);

@@ -20,30 +20,27 @@ class ShowController extends AbstractController
     #[Route('/show', name: 'app_show')]
     public function showExchange(EntityManagerInterface $entityManager, int $id=null): Response
     {
+        //wyciągnięcie danych z find
         $exchangeRepository = $entityManager->getRepository(Exchange::class);
         $exchange = $exchangeRepository->find(1);
         $jsonContent = $exchange->getJson();
+        $jsonContent1 = $jsonContent[0];
 
-//        $exchange = $exchangeRepository->findBy([], ['createdAt' => 'DESC'],['limit' => 1]);
+        //wyciągnięcie danych z obiektów
+        $exchange = $exchangeRepository->findBy([], ['createdAt' => 'DESC'],['LIMIT => 1']);
+        $jsonContent2=$exchange[0]->getJson()[0];
 
-//        $jsonContent2 = $entityManager->getRepository(Exchange::class)->findNew();
+        //wyciągnięcie danych z zapytania SQL
+        $jsonContent3 = $entityManager->getRepository(Exchange::class)->findNew();
+        $jsonContent3 = ($jsonContent3[0]['json']);
 
-//dd($jsonContent, $exchange[0], $jsonContent2[0]);
+//        dd( $jsonContent1, $jsonContent2, $jsonContent3);
 
-//        $serializer = new Serializer(
-//            [new GetSetMethodNormalizer(), new ArrayDenormalizer()],
-//            [new JsonEncoder()]
-//        );
 
-//        $data = $serializer->deserialize($jsonContent, Data::class, 'json');
+//        $data = json_decode($jsonContent3, true);
 
-//        $data = json_decode($jsonContent, true);
+        $effectiveDate = $jsonContent2['effectiveDate'];
 
-        foreach ($jsonContent as $tablica){
-            $effectiveDate = $tablica['effectiveDate'];
-            $rates = $tablica['rates'];
-        }
-
-        return $this->render('show.html.twig', ['rates' => $rates, 'effectiveDate' => $effectiveDate]);
+        return $this->render('show.html.twig', ['rates' => $jsonContent2, 'effectiveDate' => $effectiveDate]);
     }
 }

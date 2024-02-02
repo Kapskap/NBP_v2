@@ -5,7 +5,7 @@
 {% block body %}
     <div class="content">
         Znaleziono <b> {{ currencies|length }} </b> kursy walut.
-        {# currencies|last.importat|date("Y-m-d") #}
+        {{ currencies|last.importat|date("Y-m-d") }}
         <br><br>
     </div>
 
