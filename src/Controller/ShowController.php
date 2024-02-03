@@ -17,7 +17,7 @@ use App\Model\Data;
 
 class ShowController extends AbstractController
 {
-    #[Route('/show', name: 'app_show')]
+    #[Route('/', name: 'app_show')]
     public function showExchange(EntityManagerInterface $entityManager, int $id=null): Response
     {
         //wyciągnięcie danych z find
